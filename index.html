@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA HARAMAIN 03 BEKASI - Website Resmi</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-blue: #004a99;
+            --secondary-blue: #0066cc;
+            --accent-gold: #f1c40f;
+            --text-dark: #333;
+            --text-light: #555;
+            --bg-light: #f4f7fa;
+            --white: #ffffff;
+            --border-color: #ddd;
+            --font-main: 'Segoe UI', Helvetica, Arial, sans-serif;
+            --shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); background-color: var(--bg-light); color: var(--text-dark); display: flex; flex-direction: column; min-height: 100vh; }
+        a { text-decoration: none; color: inherit; transition: 0.2s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .btn { display: inline-block; padding: 12px 25px; background: var(--primary-blue); color: #fff; border-radius: 4px; font-weight: 600; cursor: pointer; border: none; }
+        .btn:hover { background: var(--secondary-blue); }
+        .section-title { color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 25px; border-bottom: 4px solid var(--accent-gold); display: inline-block; padding-bottom: 5px; }
+        
+        /* --- TOP BAR --- */
+        .top-bar { background: #222; color: #ccc; font-size: 0.85rem; padding: 8px 0; }
+        .top-bar .container { display: flex; justify-content: space-between; }
+
+        /* --- HEADER & NAV --- */
+        header { background: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        .header-main { padding: 10px 0; display: flex; justify-content: space-between; align-items: center; } 
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo img { height: 50px; } 
+        
+        /* PERUBAHAN: Nama Sekolah diperkecil */
+        .logo-text h1 { font-size: 1.0rem; color: var(--primary-blue); line-height: 1.2; font-weight: 800; text-transform: uppercase; } 
+        .logo-text p { font-size: 0.8rem; color: var(--text-light); letter-spacing: 1px; }
+
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary-blue); }
+
+        .navbar { background: var(--primary-blue); }
+        .nav-links { display: flex; justify-content: space-between; }
+        
+        .nav-item { position: relative; color: #fff; padding: 18px 15px; cursor: pointer; font-size: 0.95rem; font-weight: 500; }
+        .nav-item:hover { background: rgba(255,255,255,0.1); }
+
+        /* STYLING DROPDOWN */
+        .dropdown { 
+            position: absolute; top: 100%; left: 0; background: #fff; min-width: 280px; 
+            box-shadow: var(--shadow); display: none; z-index: 1001; border-top: 3px solid var(--accent-gold);
+            max-height: 80vh; overflow-y: auto;
+        }
+        .nav-item:hover .dropdown { display: block; }
+        
+        .dropdown-header {
+            padding: 10px 20px;
+            background: #f9f9f9;
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown a { display: block; padding: 12px 20px; color: var(--text-dark); border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
+        .dropdown a:hover { background: #f0f8ff; color: var(--primary-blue); padding-left: 25px; font-weight: 600; }
+
+        /* --- MAIN CONTENT --- */
+        main { flex: 1; padding: 40px 0; }
+        .spa-section { display: none; animation: fadeIn 0.4s ease; }
+        .spa-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Content Styles */
+        .content-box { background: #fff; padding: 0; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow: hidden; }
+        
+        /* Image Header Style */
+        .page-header-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .content-body { padding: 35px; }
+
+        .content-body p { margin-bottom: 15px; line-height: 1.8; text-align: justify; }
+        .content-body h3 { color: var(--secondary-blue); margin-top: 25px; margin-bottom: 10px; font-size: 1.3rem; }
+        
+        /* Table Styles */
+        table.custom-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; }
+        table.custom-table th, table.custom-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: left; }
+        table.custom-table th { background: var(--primary-blue); color: #fff; }
+        table.custom-table tr:nth-child(even) { background: #f9f9f9; }
+
+        /* Grid Styles */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s; border-top: 4px solid var(--accent-gold); }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 20px; }
+        .card-body h4 { color: var(--primary-blue); margin-bottom: 10px; }
+
+        /* Principal Photo Float */
+        .kepsek-photo { float: left; width: 250px; margin: 0 20px 20px 0; border-radius: 8px; border: 4px solid #eee; }
+
+        /* --- ORGANIZATIONAL CHART STYLES --- */
+        .org-chart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 20px 0;
+        }
+
+        .org-level {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 100%;
+        }
+
+        /* Level 1 (Kepsek) - Center */
+        .org-level-1 {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Connector Line */
+        .org-connector {
+            width: 2px;
+            height: 30px;
+            background-color: #ccc;
+            margin: -35px 0 15px 0; /* Negative margin to pull up to meet parent */
+            z-index: 0;
+        }
+        .org-connector::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 2px;
+            background-color: #ccc;
+            margin-left: -49px; /* Center horizontal line */
+        }
+
+        .org-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            width: 220px; /* Fixed width for uniformity */
+            transition: transform 0.3s ease;
+            z-index: 1; /* Above connector lines */
+        }
+        
+        .org-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+            border-color: var(--primary-blue);
+        }
+
+        .org-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid var(--primary-blue);
+            background-color: #f0f0f0;
+        }
+
+        .org-card h4 {
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .org-card p {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        footer { background: #1a1a1a; color: #aaa; padding: 50px 0 20px; margin-top: auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-grid h4 { color: #fff; margin-bottom: 20px; border-left: 4px solid var(--accent-gold); padding-left: 10px; }
+        .footer-grid ul li { margin-bottom: 10px; }
+        .footer-grid a:hover { color: var(--accent-gold); }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar .container { position: relative; }
+            .nav-links { display: none; flex-direction: column; width: 100%; background: var(--primary-blue); padding: 20px 0; }
+            .nav-links.mobile-active { display: flex; }
+            .nav-item { width: 100%; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .dropdown { position: static; display: none; box-shadow: none; border: none; padding-left: 20px; background: rgba(0,0,0,0.2); max-height: 500px; }
+            .nav-item.mobile-open .dropdown { display: block; }
+            .menu-toggle { display: block; }
+            .kepsek-photo { float: none; width: 100%; margin-bottom: 20px; }
+            
+            /* Responsive Org Chart */
+            .org-level-1, .org-level-2 {
+                flex-direction: column;
+                align-items: center;
+            }
+            .org-connector { display: none; } /* Hide lines on mobile for cleaner look */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="container">
+            <span>📧 info@maharamain03.sch.id | 📞 (021) 889-xxxx</span>
+            <span>MA HARAMAIN 03 BEKASI - UNGGUL & BERAKHLAK</span>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container header-main">
+            <div class="logo">
+                <img src="foto/logosekolah.jpeg" alt="Logo">
+                <div class="logo-text">
+                    <h1>MA HARAMAIN 03</h1>
+                    <p>KOTA BEKASI</p>
+                </div>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav class="navbar">
+            <div class="container">
+                <ul class="nav-links" id="mainNav">
+                    
+                    <!-- 1. PROFIL SEKOLAH -->
+                    <li class="nav-item">
+                        PROFIL SEKOLAH ▾
+                        <ul class="dropdown">
+                            <li class="dropdown-header">Identitas Sekolah</li>
+                            <li><a href="#" onclick="loadContent('sambutan-kepsek')">Sambutan Kepala Sekolah</a></li>
+                            <li><a href="#" onclick="loadContent('sejarah')">Sejarah Sekolah</a></li>
+                            <li><a href="#" onclick="loadContent('visi-misi')">Visi, Misi, Tujuan, Strategi</a></li>
+                            <li><a href="#" onclick="loadContent('lambang')">Lambang & Makna Logo</a></li>
+                            
+                            <li class="dropdown-header">Legalitas & Organisasi</li>
+                            <li><a href="#" onclick="loadContent('legalitas')">Legalitas Sekolah</a></li>
+                            <li><a href="#" onclick="loadContent('akreditasi')">Akreditasi Sekolah</a></li>
+                            <li><a href="#" onclick="loadContent('struktur')">Struktur Organisasi</a></li>
+                            
+                            <li class="dropdown-header">Akses</li>
+                            <li><a href="#" onclick="loadContent('maps')">Maps / Lokasi</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 2. SDM -->
+                    <li class="nav-item">
+                        PROFIL SDM ▾
+                        <ul class="dropdown">
+                            <li><a href="#" onclick="loadContent('data-umum')">Data Umum Staff</a></li>
+                            <li><a href="#" onclick="loadContent('tendik')">Tendik (Tenaga Kependidikan)</a></li>
+                            <li><a href="#" onclick="loadContent('siswa')">Peserta Didik</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 3. FASILITAS -->
+                    <li class="nav-item">
+                        FASILITAS ▾
+                        <ul class="dropdown">
+                            <li class="dropdown-header">Sarana Utama</li>
+                            <li><a href="#" onclick="loadContent('kantor')">Ket Kantor</a></li>
+                            <li><a href="#" onclick="loadContent('kelas')">Ruang Kelas</a></li>
+                            <li><a href="#" onclick="loadContent('laboratorium')">G. Laboratorium</a></li>
+                            <li><a href="#" onclick="loadContent('perpustakaan')">G. Perpustakaan</a></li>
+                            
+                            <li class="dropdown-header">Sarana Penunjang</li>
+                            <li><a href="#" onclick="loadContent('kamar-mandi')">Kamar Mandi/WC</a></li>
+                            <li><a href="#" onclick="loadContent('fasilitas-lain')">Layanan Khusus Lainnya</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 4. ADMINISTRASI -->
+                    <li class="nav-item">
+                        ADMINISTRASI ▾
+                        <ul class="dropdown">
+                            <li><a href="#" onclick="loadContent('korespondensi')">Layanan Administrasi Perkantoran</a></li>
+                            <li><a href="#" onclick="loadContent('spd')">Jadwal Perjalanan Dinas (SPD)</a></li>
+                            <li><a href="#" onclick="loadContent('keuangan')">Keuangan</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 5. AKADEMIK -->
+                    <li class="nav-item">
+                        AKADEMIK ▾
+                        <ul class="dropdown">
+                            <li><a href="#" onclick="loadContent('kaldik')">Kaldik</a></li>
+                            <li><a href="#" onclick="loadContent('jadwal')">Jadwal Pelajaran</a></li>
+                            <li><a href="#" onclick="loadContent('kurikulum')">Kurikulum</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 6. KESISWAAN -->
+                    <li class="nav-item">
+                        KESISWAAN ▾
+                        <ul class="dropdown">
+                            <li class="dropdown-header">Laporan & Kegiatan</li>
+                            <li><a href="#" onclick="loadContent('laporan-kegiatan')">Laporan Kegiatan Sekolah</a></li>
+                            <li><a href="#" onclick="loadContent('kegiatan-guru')">Kegiatan Guru</a></li>
+                            <li><a href="#" onclick="loadContent('kegiatan-siswa')">Kegiatan Peserta Didik</a></li>
+                            <li><a href="#" onclick="loadContent('ekstrakurikuler')">Ekstrakurikuler</a></li>
+                            
+                            <li class="dropdown-header">Prestasi</li>
+                            <li><a href="#" onclick="loadContent('prestasi-guru')">Prestasi Guru</a></li>
+                            <li><a href="#" onclick="loadContent('prestasi-siswa')">Prestasi Peserta Didik</a></li>
+                            
+                            <li class="dropdown-header">Alumni & Beasiswa</li>
+                            <li><a href="#" onclick="loadContent('beasiswa')">Program Beasiswa</a></li>
+                            <li><a href="#" onclick="loadContent('alumni')">Data Induk Alumni</a></li>
+                            <li><a href="#" onclick="loadContent('kegiatan-alumni')">Kegiatan Alumni</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 7. PPDB -->
+                    <li class="nav-item">
+                        PPDB ▾
+                        <ul class="dropdown">
+                            <li><a href="#" onclick="loadContent('ppdb-waktu')">Waktu Pendaftaran</a></li>
+                            <li><a href="#" onclick="loadContent('ppdb-kontak')">Kontak Person</a></li>
+                            <li><a href="#" onclick="loadContent('ppdb-cara')">Cara Daftar</a></li>
+                            <li><a href="#" onclick="loadContent('ppdb-saran')">Saran Pendaftaran</a></li>
+                            <li><a href="#" onclick="loadContent('ppdb-hasil')">Hasil Tes Diumumkan</a></li>
+                            <li><a href="#" onclick="loadContent('ppdb-biaya')">Pembiayaan</a></li>
+                            <li><a href="#" onclick="loadContent('ppdb-sosmed')">Sosial Media</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 8. LAINNYA -->
+                    <li class="nav-item">
+                        LAINNYA ▾
+                        <ul class="dropdown">
+                            <li class="dropdown-header">Komite</li>
+                            <li><a href="#" onclick="loadContent('komite-struktur')">Struktur Organisasi Komite</a></li>
+                            <li><a href="#" onclick="loadContent('komite-info')">Info Kegiatan Komite</a></li>
+                            <li class="dropdown-header">Umum</li>
+                            <li><a href="#" onclick="loadContent('berita')">Berita</a></li>
+                            <li><a href="#" onclick="loadContent('kepuasan')">Grafik Kepuasan Pelanggan</a></li>
+                            <li><a href="#" onclick="loadContent('kritik-saran')">Kritik dan Saran</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="container">
+        
+        <!-- 1. HOME SECTION -->
+        <section id="home" class="spa-section active">
+            <div style="background: linear-gradient(rgba(0,74,153,0.9), rgba(0,30,60,0.9)), url('https://picsum.photos/seed/schoolbg/1200/500'); background-size: cover; background-position: center; padding: 80px 40px; text-align: center; color: white; border-radius: 8px; margin-bottom: 40px;">
+                <h1 style="font-size: 2.8rem; margin-bottom: 15px;">MA HARAMAIN 03 BEKASI</h1>
+                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px;">Membentuk Generasi Qurani yang Berwawasan Global, Berintegritas, dan Berprestasi.</p>
+                <button class="btn" style="background: var(--accent-gold); color: #000;" onclick="loadContent('ppdb-waktu')">Info PPDB 2024</button>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <img src="foto/gedung-sekolah.jpg" alt="Akademik">
+                    <div class="card-body">
+                        <h4>Kurikulum Merdeka</h4>
+                        <p>Penerapan kurikulum terbaru yang berpusat pada siswa dan pengembangan karakter.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="foto/masjid.jpeg" alt="Tahfidz">
+                    <div class="card-body">
+                        <h4>Program Tahfidz</h4>
+                        <p>Wajib hafalan Juz 30 dan target hafalan 3 Juz untuk lulusan unggulan.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="foto/banjari.jpeg" alt="Ekstra">
+                    <div class="card-body">
+                        <h4>Ekstrakurikuler</h4>
+                        <p>Pramuka, Silat, Marawis, Basket, dan Futsal untuk menyalurkan bakat siswa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <h2 class="section-title">Berita Terbaru</h2>
+                <div class="content-box">
+                    <div style="display: flex; gap: 20px; margin-bottom: 20px; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+                        <img src="https://picsum.photos/seed/news1/150/150" style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px;">
+                        <div>
+                            <h3 style="margin-top: 0;">Sosialisasi PPDB Gelombang 1</h3>
+                            <p style="font-size: 0.9rem; color: #888;">20 Mei 2024</p>
+                            <p>Panitia PPDB MA Haramain 03 Bekasi mulai melakukan sosialisasi ke SMP-SMP sekitar...</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <img src="https://picsum.photos/seed/news2/150/150" style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px;">
+                        <div>
+                            <h3 style="margin-top: 0;">Juara 1 Lomba Pidato Bahasa Arab</h3>
+                            <p style="font-size: 0.9rem; color: #888;">15 Mei 2024</p>
+                            <p>Selamat kepada Ananda Rizky yang telah mengharumkan nama sekolah di tingkat Kabupaten...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. DYNAMIC CONTAINER -->
+        <section id="dynamic-content" class="spa-section">
+            <div class="content-box">
+                <!-- Gambar Header akan muncul di sini -->
+                <img id="d-image" class="page-header-img" src="" alt="Header Image">
+                
+                <div class="content-body">
+                    <h2 class="section-title" id="d-title">Judul Halaman</h2>
+                    <div id="d-body">
+                        <!-- Konten akan dimuat di sini -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>MA HARAMAIN 03</h4>
+                    <p>Membentuk pribadi unggul yang beriman dan bertaqwa.</p>
+                    <p style="margin-top: 10px;"><strong>Alamat:</strong> Jl. Raya Penggilingan No. 03, Bekasi.</p>
+                </div>
+                <div>
+                    <h4>Tautan Cepat</h4>
+                    <ul>
+                        <li><a href="#" onclick="loadContent('ppdb-waktu')">Info Pendaftaran</a></li>
+                        <li><a href="#" onclick="loadContent('jadwal')">Jadwal Pelajaran</a></li>
+                        <li><a href="#" onclick="loadContent('prestasi-siswa')">Prestasi Siswa</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Hubungi Kami</h4>
+                    <p>📞 021-889-9999</p>
+                    <p>📱 0812-3456-7890 (WA)</p>
+                    <p>✉️ admin@maharamain03.sch.id</p>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid #333; padding-top: 20px; font-size: 0.8rem;">
+                &copy; 2024 MA HARAMAIN 03 BEKASI. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- DATABASE KONTEN LENGKAP ---
+        const db_content = {
+            // PROFIL SEKOLAH
+            'sambutan-kepsek': {
+                title: 'Sambutan Kepala Sekolah',
+                image: 'https://picsum.photos/seed/sambutan/1200/400',
+                type: 'text',
+                content: `<div style="overflow: hidden;">
+                    <img src="https://picsum.photos/seed/kepsek/400/500f" class="kepsek-photo" alt="Kepala Sekolah">
+                    <p><strong>Assalamu'alaikum Warahmatullahi Wabarakatuh</strong></p>
+                    <p>Puji syukur kita panjatkan ke hadirat Allah SWT yang telah memberikan rahmat dan anugerah-Nya sehingga website MA HARAMAIN 03 BEKASI dapat kita hadirkan.</p>
+                    <p>Selamat datang di website resmi MA Haramain 03 Bekasi. Website ini hadir sebagai media informasi dan komunikasi antara sekolah dengan masyarakat, orang tua, siswa, dan alumni.</p>
+                    <p>Kami berkomitmen untuk terus meningkatkan kualitas pendidikan yang unggul, berakhlak mulia, dan berwawasan global. Mari bersama-sama kita wujudkan generasi masa depan yang cemerlang.</p>
+                    <p><br><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh</strong></p>
+                    <p><strong>Kepala Sekolah MA HARAMAIN 03 BEKASI</strong><br>Drs.Moh. hasan romadoni, M.Pd</p>
+                    </div>`
+            },
+            'sejarah': {
+                title: 'Sejarah Sekolah',
+                image: 'https://picsum.photos/seed/sejarah/1200/400',
+                type: 'text',
+                content: `<p><strong>MA HARAMAIN 03 BEKASI</strong> berdiri pada tahun 1999. Berdirinya sekolah ini bermula dari keprihatinan para tokoh masyarakat dan ulama setempat akan kebutuhan lembaga pendidikan formal tingkat menengah atas yang berbasis Islam di lingkungan Penggilingan, Bekasi.</p>
+                <h3>Perjalanan Perkembangan</h3>
+                <ul style="margin-left: 20px; list-style: disc;">
+                    <li><strong>1999:</strong> Awal penerimaan siswa dengan jumlah 1 rombongan belajar di lahan wakaf seluas 1500 m².</li>
+                    <li><strong>2004:</strong> Melaksanakan pembangunan gedung 2 lantai untuk menampung peningkatan jumlah siswa.</li>
+                    <li><strong>2010:</strong> Meraih Akreditasi "B" dari BAN-S/M.</li>
+                    <li><strong>2015:</strong> Meningkatkan status menjadi Akreditasi "A" dan meluncurkan program unggulan Tahfidz.</li>
+                    <li><strong>2023:</strong> Melengkapi fasilitas laboratorium komputer dan multimedia modern.</li>
+                </ul>`
+            },
+            'visi-misi': {
+                title: 'Visi, Misi, Tujuan & Strategi',
+                image: 'https://picsum.photos/seed/visi/1200/400',
+                type: 'text',
+                content: `<h3>Visi</h3><p>"Terwujudnya insan cendekia yang beriman, bertaqwa, berakhlakul karimah, dan berwawasan global."</p>
+                <h3>Misi</h3><ol style="margin-left: 20px;"><li>Melaksanakan pembelajaran dan bimbingan secara efektif.</li><li>Menumbuhkan semangat keunggulan secara intensif kepada seluruh warga sekolah.</li><li>Mendorong siswa untuk mengenali dan mengembangkan potensi dirinya.</li><li>Menerapkan manajemen partisipatif dengan melibatkan seluruh warga sekolah.</li></ol>
+                <h3>Tujuan</h3><ul style="margin-left: 20px;"><li>Meningkatnya kualitas keimanan dan ketaqwaan siswa.</li><li>Terlaksananya pembelajaran aktif, inovatif, kreatif, efektif dan menyenangkan.</li><li>Meningkatnya prestasi siswa dalam bidang akademik maupun non-akademik.</li></ul>
+                <h3>Strategi</h3><p>Pengembangan kurikulum terpadu, pemberdayaan guru dan staf secara profesional, optimalisasi sarana prasarana, serta kerjasama yang luas dengan berbagai instansi.</p>`
+            },
+            'lambang': {
+                title: 'Lambang & Makna Logo',
+                image: 'https://picsum.photos/seed/lambang/1200/400',
+                type: 'text',
+                content: `<div style="display: flex; gap: 30px; align-items: flex-start; margin-bottom: 20px;">
+                    <img src="https://picsum.photos/seed/logo3/200/200" style="border-radius: 10px; border: 1px solid #ddd;">
+                    <div><h3>Deskripsi Logo</h3><p>Logo MA Haramain 03 berbentuk perisai yang melambangkan perlindungan agama, di dalamnya terdapat bintang, kitab, dan kaligrafi.</p></div>
+                </div>
+                <h3>Makna Filsafat</h3>
+                <ul>
+                    <li><strong>Bentuk Segi Lima:</strong> Melambangkan Rukun Islam dan Pancasila.</li>
+                    <li><strong>Warna Biru:</strong> Melambangkan ketenangan, kedalaman ilmu, dan komitmen Islam.</li>
+                    <li><strong>Warna Kuning Emas:</strong> Melambangkan kemuliaan, kecerdasan, dan prestasi gemilang.</li>
+                    <li><strong>Kitab & Bulatan:</strong> Melambangkan sumber ilmu pengetahuan yang melingkar (abadi).</li>
+                </ul>`
+            },
+            'legalitas': {
+                title: 'Legalitas Sekolah',
+                image: 'https://picsum.photos/seed/legalitas/1200/400',
+                type: 'table',
+                headers: ['Dokumen', 'Nomor SK', 'Tanggal', 'Penerbit'],
+                rows: [
+                    ['Izin Pendirian', 'SK/Kanwil/JawaBarat/005/1999', '15 Januari 1999', 'Kemenag Jawa Barat'],
+                    ['Akreditasi Sekolah', '1234/BAN-SM/A/2015', '20 Mei 2015', 'BAN-S/M'],
+                    ['NPSN Sekolah', '2050xxxx', '-', 'Kemdikbud'],
+                    ['Izin Operasional Terbaru', 'Surat Ijin No. 421/xxx/2020', '01 Maret 2020', 'Kemenag Kota Bekasi']
+                ]
+            },
+            'akreditasi': {
+                title: 'Akreditasi Sekolah',
+                image: 'https://picsum.photos/seed/akreditasi/1200/400',
+                type: 'text',
+                content: `<p>MA HARAMAIN 03 BEKASI telah memperoleh sertifikasi akreditasi dengan predikat:</p>
+                <div style="background: #dff0d8; color: #3c763d; padding: 20px; text-align: center; font-size: 1.5rem; font-weight: bold; border-radius: 5px; margin: 20px 0;">
+                    AKREDITASI A (UNGGUL)
+                </div>
+                <p>Sertifikat Akreditasi ini berlaku sejak tahun 2015 dan telah diverifikasi ulang pada tahun 2020, menunjukkan kualitas pendidikan yang memenuhi standar nasional pendidikan.</p>`
+            },
+            'struktur': {
+                title: 'Struktur Organisasi',
+                image: 'https://picsum.photos/seed/struktur/1200/400',
+                type: 'text',
+                content: `
+                <p>Struktur organisasi MA HARAMAIN 03 BEKASI disusun secara hierarkis untuk memastikan efektivitas pelayanan pendidikan.</p>
+                
+                <div class="org-chart-container">
+                    <!-- Level 1: Kepala Sekolah -->
+                    <div class="org-level org-level-1">
+                        <div class="org-card">
+                            <img src="https://picsum.photos/seed/kepsek/200/200" alt="Kepala Sekolah">
+                            <h4>Kepala Sekolah</h4>
+                            <p>Drs. H. Abdullah Basit, M.Pd</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Connector Line -->
+                    <div class="org-connector"></div>
+
+                    <!-- Level 2: Para Wakil -->
+                    <div class="org-level org-level-2">
+                        <div class="org-card">
+                            <img src="https://picsum.photos/seed/siti/200/200" alt="Waka Kurikulum">
+                            <h4>Waka Kurikulum</h4>
+                            <p>Ibu Siti Aminah, S.Pd</p>
+                        </div>
+                        
+                        <div class="org-card">
+                            <img src="https://picsum.photos/seed/rahmat/200/200" alt="Waka Kesiswaan">
+                            <h4>Waka Kesiswaan</h4>
+                            <p>Bpk. Rahmat Hidayat, S.Ag</p>
+                        </div>
+                        
+                        <div class="org-card">
+                            <img src="https://picsum.photos/seed/budi/200/200" alt="Waka Sarpras">
+                            <h4>Waka Sarpras</h4>
+                            <p>Bpk. Budi Santoso</p>
+                        </div>
+                        
+                        <div class="org-card">
+                            <img src="https://picsum.photos/seed/nurul/200/200" alt="Waka Humas">
+                            <h4>Waka Humas</h4>
+                            <p>Ibu Nurul Hidayah, S.Pd.I</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <p>Di bawahnya terdapat Ka. Prodi, Ka. Lab, Ka. Perpustakaan, dan pembina OSIS sebagai elemen pelaksana kegiatan.</p>
+                </div>
+                `
+            },
+            'maps': {
+                title: 'Maps / Lokasi',
+                image: 'https://picsum.photos/seed/maps/1200/400',
+                type: 'map',
+                content: 'Lokasi'
+            },
+
+            // SDM
+            'data-umum': {
+                title: 'Data Umum Staff Pengajar',
+                image: 'https://picsum.photos/seed/staff/1200/400',
+                type: 'table',
+                headers: ['Nama', 'NIP/NUPTK', 'Mata Pelajaran', 'Pendidikan Terakhir'],
+                rows: [
+                    ['Drs. H. Abdullah Basit', '19700101...', 'Fikih/Aqidah', 'S2 PAI'],
+                    ['Siti Aminah, S.Pd', '19800520...', 'Matematika', 'S1 Pendidikan Matematika'],
+                    ['Rahmat Hidayat, S.Ag', '19851212...', 'Bahasa Arab', 'S1 Sastra Arab'],
+                    ['Ahmad Fauzi, S.Kom', '19901010...', 'TIK', 'S1 Teknik Informatika'],
+                    ['Dewi Sartika, S.Pd', '19920202...', 'Bahasa Inggris', 'S1 Sastra Inggris']
+                ]
+            },
+            'tendik': {
+                title: 'Tenaga Kependidikan (Tendik)',
+                image: 'https://picsum.photos/seed/tendik/1200/400',
+                type: 'text',
+                content: `<p>Tendik merupakan garda terdepan dalam kelancaran administrasi dan layanan keseharian siswa. Berikut adalah rincian Tendik MA Haramain 03:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Kepala Tata Usaha:</strong> Bpk. Joko Susilo</li>
+                    <li><strong>Staf Administrasi:</strong> 4 Orang (Pendaftaran, Keuangan, Kesiswaan, Kurikulum)</li>
+                    <li><strong>Keamanan (Satpam):</strong> 4 Orang (Regu A, B)</li>
+                    <li><strong>Kebersihan (Cleaning Service):</strong> 3 Orang</li>
+                    <li><strong>Perpustakaan:</strong> 1 Pustakawan dan 1 Asisten</li>
+                </ul>`
+            },
+            'siswa': {
+                title: 'Peserta Didik',
+                image: 'https://picsum.photos/seed/siswa/1200/400',
+                type: 'text',
+                content: `<p>Jumlah peserta didik aktif tahun ajaran 2023/2024:</p>
+                <ul style="list-style: none; display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; text-align: center; margin-top: 20px;">
+                    <li style="background: #eef; padding: 20px; border-radius: 8px;"><h1 style="color: var(--primary-blue)">144</h1><p>Kelas X</p></li>
+                    <li style="background: #eef; padding: 20px; border-radius: 8px;"><h1 style="color: var(--primary-blue)">128</h1><p>Kelas XI</p></li>
+                    <li style="background: #eef; padding: 20px; border-radius: 8px;"><h1 style="color: var(--primary-blue)">120</h1><p>Kelas XII</p></li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Total Siswa:</strong> 392 Siswa (Laki-laki: 180, Perempuan: 212)</p>
+                <p>Siswa tersebar di jurusan IPA dan IPS serta program Keagamaan.</p>`
+            },
+
+            // FASILITAS
+            'kantor': {
+                title: 'Ket Kantor',
+                image: 'https://picsum.photos/seed/kantor/1200/400',
+                type: 'text',
+                content: `
+                <p>Area administrasi sekolah bagi guru, staf, dan kepala sekolah.</p>
+                
+                <div class="grid-3">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/office-headmaster/400/200" alt="Ruang Kepala Sekolah">
+                        <div class="card-body">
+                            <h4>Ruang Kepala Sekolah</h4>
+                            <p>Luas, ber-AC, lengkap dengan set meja kerja dan ruang tamu untuk menerima tamu penting.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/office-teachers/400/200" alt="Ruang Guru">
+                        <div class="card-body">
+                            <h4>Ruang Guru</h4>
+                            <p>Tempat istirahat dan persiapan mengajar guru. Dilengkapi Meja kerja, AC, dan WiFi gratis.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/office-admin/400/200" alt="Ruang Tata Usaha">
+                        <div class="card-body">
+                            <h4>Ruang Tata Usaha (TU)</h4>
+                            <p>Pusat pelayanan siswa dan orang tua untuk Pendaftaran, Pembayaran SPP, dan Administrasi.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/office-bk/400/200" alt="Ruang BK">
+                        <div class="card-body">
+                            <h4>Ruang BK</h4>
+                            <p>Tempat konseling siswa yang membutuhkan bimbingan pribadi, sosial, maupun karir.</p>
+                        </div>
+                    </div>
+                </div>
+                `
+            },
+            'kelas': {
+                title: 'Ruang Kelas',
+                image: 'https://picsum.photos/seed/kelas/1200/400',
+                type: 'text',
+                content: `<p>Semua ruang kelas di MA Haramain 03 telah dilengkapi dengan standar kenyamanan belajar modern:</p>
+                <ul style="margin-left: 20px;">
+                    <li>Ukuran ruang 7m x 8m (Standar Nasional).</li>
+                    <li>AC dan Kipas Angin gantung.</li>
+                    <li>Proyektor (LCD) dan Screen Layar.</li>
+                    <li>Papan Tulis Whiteboard berkualitas tinggi.</li>
+                    <li>Lemari Penyimpanan Kelas (Lockers).</li>
+                </ul>
+                <p><strong>Jumlah Ruang Kelas:</strong> 12 Ruang (Masing-masing 4 kelas untuk X, XI, XII).</p>`
+            },
+            'laboratorium': {
+                title: 'Gedung Laboratorium',
+                image: 'https://picsum.photos/seed/lab/1200/400',
+                type: 'text',
+                content: `<p>Sekolah menyediakan 3 jenis laboratorium utama untuk menunjang pembelajaran praktis:</p>
+                <ol style="margin-left: 20px;">
+                    <li><strong>Lab IPA:</strong> Dilengkapi alat praktikum Fisika, Kimia, dan Biologi lengkap standar nasional, lemari asam, dan meja kerja granit.</li>
+                    <li><strong>Lab Komputer:</strong> 20 Unit PC spesifikasi Core i5, monitor 20", jaringan internet Fiber Optic 100Mbps.</li>
+                    <li><strong>Lab Bahasa:</strong> Fasilitas audio kualitas tinggi untuk belajar Bahasa Arab dan Inggris.</li>
+                </ol>`
+            },
+            'perpustakaan': {
+                title: 'Gedung Perpustakaan',
+                image: 'https://picsum.photos/seed/perpus/1200/400',
+                type: 'text',
+                content: `<p>Perpustakaan "Ilmu Amal" MA Haramain 03 menyediakan ribuan koleksi buku.</p>
+                <ul style="margin-left: 20px;">
+                    <li>Koleksi Buku Pelajaran & Referensi (Sains, Sejarah, Agama).</li>
+                    <li>Novel Fiksi & Non-Fiksi Islami.</li>
+                    <li>Majalah & Jurnal Pendidikan.</li>
+                    <li>Koran harian (Kompas, Media Indonesia).</li>
+                </ul>
+                <p>Fasilitas: Area baca ber-AC, WiFi gratis, dan Sistem Perpustakaan Digital (OPAC).</p>`
+            },
+            'kamar-mandi': {
+                title: 'Kamar Mandi / WC',
+                image: 'https://picsum.photos/seed/wc/1200/400',
+                type: 'text',
+                content: `<p>Sekolah memprioritaskan kebersihan dan kenyamanan sanitasi bagi siswa dan guru.</p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Toilet Siswa Laki-laki:</strong> 4 Kabin Closet Duduk, 4 Kabin Closet Jongkok.</li>
+                    <li><strong>Toilet Siswa Perempuan:</strong> 8 Kabin (Full Duduk), Wastafel di setiap kabin.</li>
+                    <li><strong>Toilet Guru:</strong> Terpisah khusus 2 Kabin.</li>
+                    <li>Jadwal pembersihan harian 3 kali sehari oleh tim cleaning service.</li>
+                    <li>Dilengkapi dengan air WUDHU yang mengalir di lantai 1 & 2.</li>
+                </ul>`
+            },
+            'fasilitas-lain': {
+                title: 'Layanan Khusus Lainnya',
+                image: 'https://picsum.photos/seed/canteen/1200/400',
+                type: 'text',
+                content: `<ul style="margin-left: 20px;">
+                    <li><strong>Masjid Sekolah:</strong> Kapasitas 500 jamaah, ber-AC, tempat sholat berjamaah.</li>
+                    <li><strong>Kantin Sehat:</strong> Menyediakan makanan bergizi, halal, dan terjangkau.</li>
+                    <li><strong>Koperasi Siswa:</strong> Tempat siswa membeli ATK dan kebutuhan sekolah.</li>
+                    <li><strong>Poli UKS:</strong> Layanan kesehatan ringan untuk siswa yang kurang sehat.</li>
+                    <li><strong>Parkir Luas:</strong> Aman dan terawasi CCTV.</li>
+                </ul>`
+            },
+
+            // ADMINISTRASI
+            'korespondensi': {
+                title: 'Korespondensi (Administrasi Perkantoran)',
+                image: 'https://picsum.photos/seed/letter/1200/400',
+                type: 'text',
+                content: `<p>Bidang ini menangani semua surat masuk dan surat keluar, serta pengelolaan arsip kegiatan.</p>
+                <p><strong>Alamat Resmi Surat:</strong><br>
+                MA HARAMAIN 03 BEKASI<br>
+                Jl. Raya Penggilingan No. 03<br>
+                Kecamatan Cakung, Jakarta Timur / Bekasi Timur</p>
+                <p>Untuk keperluan pengurusan surat keterangan aktif siswa, surat izin, atau lainnya, silakan datang ke Loket TU pada jam kerja (07.30 - 15.00).</p>`
+            },
+            'spd': {
+                title: 'Jadwal Perjalanan Dinas (SPD)',
+                image: 'https://picsum.photos/seed/travel/1200/400',
+                type: 'text',
+                content: `<p>Agenda perjalanan dinas guru dan staf bulan berjalan:</p>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 10px;">📅 <strong>20 Mei 2024:</strong> Workshop Kurikulum Merdeka (Lembang) - 2 Guru.</li>
+                    <li style="margin-bottom: 10px;">📅 <strong>10 Juni 2024:</strong> Rapat Koordinasi MGMP Matematika (Jakarta Pusat) - 1 Guru.</li>
+                    <li style="margin-bottom: 10px;">📅 <strong>15 Juli 2024:</strong> Supervisi Akademik ke Kemenag Kota Bekasi - Wakil Kepala Sekolah.</li>
+                    <li style="margin-bottom: 10px;">📅 <strong>01 Agustus 2024:</strong> Monitoring Dana BOS - Bendahara Sekolah.</li>
+                </ul>`
+            },
+            'keuangan': {
+                title: 'Keuangan',
+                image: 'https://picsum.photos/seed/money/1200/400',
+                type: 'text',
+                content: `<p>Transparansi penggunaan dana BOS dan SPP adalah prioritas kami. Laporan keuangan dipublikasikan setiap triwulan di papan pengumuman dan website.</p>
+                <h3>Jadwal Pembayaran SPP</h3>
+                <p>Tanggal 1-10 setiap bulan.</p>
+                <h3>Metode Pembayaran</h3>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Tunai:</strong> Langsung di Loket Tata Usaha.</li>
+                    <li><strong>Transfer Bank:</strong> Bank Syariah Indonesia (BSI) <br>No Rek: <strong>7123456789</strong> a.n Yayasan Haramain Pendidikan.</li>
+                    <li><strong>QRIS:</strong> Tersedia di Loket TU.</li>
+                </ul>`
+            },
+
+            // AKADEMIK
+            'kaldik': {
+                title: 'Kaldik (Kalender Pendidikan)',
+                image: 'https://picsum.photos/seed/calendar/1200/400',
+                type: 'text',
+                content: `<p><strong>Tahun Ajaran 2023/2024</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Semester Ganjil:</strong> Juli 2023 - Desember 2023</li>
+                    <li><strong>Libur Ganjil:</strong> 24 Des 2023 - 2 Jan 2024</li>
+                    <li><strong>Semester Genap:</strong> Januari 2024 - Juni 2024</li>
+                    <li><strong>UAS/UKK:</strong> Mei 2024</li>
+                    <li><strong>Pengumuman Kelulusan:</strong> 15 Mei 2024</li>
+                    <li><strong>Penerimaan Raport:</strong> Akhir Juni 2024</li>
+                </ul>
+                <p>Harap mengikuti setiap jadwal dengan baik agar tidak terjadi keterlambatan administrasi.</p>`
+            },
+            'jadwal': {
+                title: 'Jadwal Pelajaran',
+                image: 'https://picsum.photos/seed/schedule/1200/400',
+                type: 'text',
+                content: `
+                <p>Berikut adalah jadwal pelajaran lengkap untuk Tahun Ajaran 2023/2024. Jadwal dapat berubah sewaktu-waktu sesuai kegiatan sekolah.</p>
+                
+                <h3>KELAS X IPA 1</h3>
+                <div style="overflow-x: auto;">
+                <table class="custom-table" style="min-width: 600px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">No</th>
+                            <th style="width: 150px;">Waktu</th>
+                            <th>Senin</th>
+                            <th>Selasa</th>
+                            <th>Rabu</th>
+                            <th>Kamis</th>
+                            <th>Jumat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>07.00 - 07.45</td><td>Upacara</td><td>Matematika</td><td>Bhs. Indonesia</td><td>Fisika</td><td>Quran Hadits</td></tr>
+                        <tr><td>2</td><td>07.45 - 08.30</td><td>Fiqih</td><td>Matematika</td><td>Bhs. Indonesia</td><td>Fisika</td><td>Quran Hadits</td></tr>
+                        <tr><td colspan="7" style="text-align:center; background:#e3f2fd;">ISTIRAHAT 08.30 - 09.00</td></tr>
+                        <tr><td>3</td><td>09.00 - 09.45</td><td>Bhs. Inggris</td><td>Biologi</td><td>Sejarah</td><td>Kimia</td><td>Senam</td></tr>
+                        <tr><td>4</td><td>09.45 - 10.30</td><td>Bhs. Inggris</td><td>Biologi</td><td>Sejarah</td><td>Kimia</td><td>Jumat Bersih</td></tr>
+                        <tr><td>5</td><td>10.30 - 11.15</td><td>Seni Budaya</td><td>PKn</td><td>Bhs. Arab</td><td>TIK</td><td>Sholat Dhuha</td></tr>
+                        <tr><td>6</td><td>11.15 - 12.00</td><td>PJOK</td><td>PKn</td><td>Bhs. Arab</td><td>TIK</td><td>Sholat Dhuha</td></tr>
+                        <tr><td colspan="7" style="text-align:center; background:#e3f2fd;">ISTIRAHAT & SHOLAT DHUHUR 12.00 - 13.00</td></tr>
+                        <tr><td>7</td><td>13.00 - 13.45</td><td>Aqidah Akhlak</td><td>Bhs. Mandarin</td><td>Geografi</td><td>Kimia (Lab)</td><td>Bimbingan Konseling</td></tr>
+                        <tr><td>8</td><td>13.45 - 14.30</td><td>Aqidah Akhlak</td><td>Bhs. Mandarin</td><td>Geografi</td><td>Kimia (Lab)</td><td>Bimbingan Konseling</td></tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <hr style="margin: 40px 0; border: 0; border-top: 1px solid #ddd;">
+
+                <h3>KELAS XI IPS 1</h3>
+                <div style="overflow-x: auto;">
+                <table class="custom-table" style="min-width: 600px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">No</th>
+                            <th style="width: 150px;">Waktu</th>
+                            <th>Senin</th>
+                            <th>Selasa</th>
+                            <th>Rabu</th>
+                            <th>Kamis</th>
+                            <th>Jumat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>07.00 - 07.45</td><td>Upacara</td><td>Matematika</td><td>Bhs. Indonesia</td><td>Ekonomi</td><td>Quran Hadits</td></tr>
+                        <tr><td>2</td><td>07.45 - 08.30</td><td>Fiqih</td><td>Matematika</td><td>Bhs. Indonesia</td><td>Ekonomi</td><td>Quran Hadits</td></tr>
+                        <tr><td colspan="7" style="text-align:center; background:#e3f2fd;">ISTIRAHAT 08.30 - 09.00</td></tr>
+                        <tr><td>3</td><td>09.00 - 09.45</td><td>Bhs. Inggris</td><td>Sosiologi</td><td>Sejarah</td><td>Geografi</td><td>Senam</td></tr>
+                        <tr><td>4</td><td>09.45 - 10.30</td><td>Bhs. Inggris</td><td>Sosiologi</td><td>Sejarah</td><td>Geografi</td><td>Jumat Bersih</td></tr>
+                        <tr><td>5</td><td>10.30 - 11.15</td><td>Seni Budaya</td><td>PKn</td><td>Bhs. Arab</td><td>TIK</td><td>Sholat Dhuha</td></tr>
+                        <tr><td>6</td><td>11.15 - 12.00</td><td>PJOK</td><td>PKn</td><td>Bhs. Arab</td><td>TIK</td><td>Sholat Dhuha</td></tr>
+                        <tr><td colspan="7" style="text-align:center; background:#e3f2fd;">ISTIRAHAT & SHOLAT DHUHUR 12.00 - 13.00</td></tr>
+                        <tr><td>7</td><td>13.00 - 13.45</td><td>Aqidah Akhlak</td><td>Antropologi</td><td>Ekonomi</td><td>Sosiologi</td><td>Bimbingan Konseling</td></tr>
+                        <tr><td>8</td><td>13.45 - 14.30</td><td>Aqidah Akhlak</td><td>Antropologi</td><td>Ekonomi</td><td>Sosiologi</td><td>Bimbingan Konseling</td></tr>
+                    </tbody>
+                </table>
+                </div>
+                `
+            },
+            'kurikulum': {
+                title: 'Kurikulum',
+                image: 'https://picsum.photos/seed/curriculum/1200/400',
+                type: 'text',
+                content: `<p>Sekolah menerapkan <strong>Kurikulum Merdeka</strong> dengan pendekatan Pembelajaran Berbasis Projek (P5) untuk mengasah keterampilan soft skills dan karakter siswa.</p>
+                <h3>Penjurusan</h3>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Ilmu Pengetahuan Alam (IPA):</strong> Fokus pada sains, matematika, dan biologi.</li>
+                    <li><strong>Ilmu Pengetahuan Sosial (IPS):</strong> Fokus pada sosiologi, ekonomi, dan geografi.</li>
+                    <li><strong>Keagamaan (Keagamaan):</strong> Peningkatan hafalan Al-Quran dan Kitab Kuning.</li>
+                </ul>`
+            },
+
+            // KESISWAAN
+            'laporan-kegiatan': {
+                title: 'Laporan Kegiatan Sekolah',
+                image: 'https://picsum.photos/seed/report/1200/400',
+                type: 'text',
+                content: `<p>Bagian ini memuat arsip laporan kegiatan yang telah dilaksanakan.</p>
+                <ul style="margin-left: 20px;">
+                    <li><a href="#" style="color:blue; text-decoration:underline;">Laporan Kegiatan Maulid Nabi SAW 2023.pdf</a></li>
+                    <li><a href="#" style="color:blue; text-decoration:underline;">Laporan Class Meeting Semester Ganjil 2023.pdf</a></li>
+                    <li><a href="#" style="color:blue; text-decoration:underline;">Laporan Kunjungan Industri ke PT Astra 2024.pdf</a></li>
+                </ul>`
+            },
+            'kegiatan-guru': {
+                title: 'Kegiatan Guru',
+                image: 'https://picsum.photos/seed/teach/1200/400',
+                type: 'text',
+                content: `<p>Guru MA Haramain 03 aktif dalam pengembangan diri:</p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Pelatihan IT:</strong> Peningkatan kemampuan membuat media pembelajaran digital (Canva, Quizizz).</li>
+                    <li><strong>MGMP:</strong> Musyawarah Guru Mata Pelajaran rutin bulanan se-Kecamatan.</li>
+                    <li><strong>In House Training (IHT):</strong> Pelatihan internal per semester mengenai manajemen kelas.</li>
+                </ul>`
+            },
+            'kegiatan-siswa': {
+                title: 'Kegiatan Peserta Didik',
+                image: 'https://picsum.photos/seed/students/1200/400',
+                type: 'text',
+                content: `<p>Rutinitas siswa di luar KBM (Kegiatan Belajar Mengajar):</p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Senin:</strong> Upacara Bendera dan Yasinan sore.</li>
+                    <li><strong>Jumat:</strong> Senam Pagi bersama dan Jumat Bersih.</li>
+                    <li><strong>Class Meeting:</strong> Diadakan akhir semester sebagai ajang kompetisi olahraga antar kelas.</li>
+                    <li><strong>Pekan Olahraga (PORSENI):</strong> Tahunan selama 1 minggu penuh.</li>
+                </ul>`
+            },
+            'ekstrakurikuler': {
+                title: 'Ekstrakurikuler',
+                image: 'https://picsum.photos/seed/sport/1200/400',
+                type: 'text',
+                content: `<p>Pilihan Ekskul untuk mengembangkan bakat minat siswa:</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px;">
+                    <div>✅ Pramuka (Wajib Kelas X)</div>
+                    <div>✅ Paskibra</div>
+                    <div>✅ PMR</div>
+                    <div>✅ Rohis (Remaja Masjid)</div>
+                    <div>✅ Marawis Hadroh</div>
+                    <div>✅ Futsal</div>
+                    <div>✅ Basket</div>
+                    <div>✅ Kewirausahaan (Daur Ulang)</div>
+                    <div>✅ Jurnalistik</div>
+                    <div>✅ KIR (Karya Ilmiah Remaja)</div>
+                </div>`
+            },
+            'prestasi-guru': {
+                title: 'Prestasi Guru',
+                image: 'https://picsum.photos/seed/trophy/1200/400',
+                type: 'table',
+                headers: ['Nama Guru', 'Prestasi', 'Tingkat', 'Tahun'],
+                rows: [
+                    ['Drs. Abdullah Basit', 'Guru Teladan Provinsi Jawa Barat', 'Provinsi', '2022'],
+                    ['Siti Aminah, S.Pd', 'Juara 1 Inovasi Pembelajaran Matematika', 'Kota Bekasi', '2023'],
+                    ['Rahmat Hidayat', 'Narasumber Seminar Pendidikan Islam', 'Nasional', '2023']
+                ]
+            },
+            'prestasi-siswa': {
+                title: 'Prestasi Peserta Didik',
+                image: 'https://picsum.photos/seed/award/1200/400',
+                type: 'table',
+                headers: ['Nama Siswa', 'Prestasi', 'Tingkat', 'Tahun'],
+                rows: [
+                    ['Ahmad Rizky', 'Juara 1 Pidato Bahasa Arab', 'Kota Bekasi', '2023'],
+                    ['Fatimah Azzahra', 'Juara 2 Tahfidz Juz 30', 'Kecamatan', '2023'],
+                    ['Tim Futsal', 'Juara Harapan 1 Liga Pelajar', 'Kota', '2024'],
+                    ['Tim Robotik', 'Finalis Robotik Nasional', 'Nasional', '2024']
+                ]
+            },
+            'beasiswa': {
+                title: 'Program Beasiswa',
+                image: 'https://picsum.photos/seed/scholarship/1200/400',
+                type: 'text',
+                content: `<p>MA Haramain 03 menyediakan beberapa program beasiswa untuk siswa berprestasi dan kurang mampu:</p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Beasiswa Prestasi Akademik (Rata-rata > 85):</strong> Potongan Uang Pangkal 50%.</li>
+                    <li><strong>Beasiswa Tahfidz (Hafal 3 Juz):</strong> Potongan Uang Pangkal 100% & SPP Gratis.</li>
+                    <li><strong>Beasiswa Yatim/Dhuafa:</strong> Potongan Uang Pangkal 100% (Terbatas 10 Kuota).</li>
+                </ul>
+                <p>Silakan datang ke bagian TU dengan membawa bukti khusus untuk mendaftar beasiswa.</p>`
+            },
+            'alumni': {
+                title: 'Data Induk Alumni',
+                image: 'https://picsum.photos/seed/graduate/1200/400',
+                type: 'text',
+                content: `<p>Ikatan Alumni MA Haramain 03 (IKAMA) telah berhasil meluluskan lebih dari <strong>2500 alumni</strong> sejak tahun 2000.</p>
+                <p>Alumni kami tersebar di berbagai Perguruan Tinggi Negeri (UI, UIN, IPB, UNJ) dan Swasta terbaik.</p>
+                <p>Bagi alumni yang ingin memperbarui data, silakan isi form di bawah ini (Simulasi).</p>
+                <button class="btn">Update Data Alumni</button>`
+            },
+            'kegiatan-alumni': {
+                title: 'Kegiatan Alumni',
+                image: 'https://picsum.photos/seed/reunion/1200/400',
+                type: 'text',
+                content: `<p>Aktivitas terbaru IKAMA:</p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Reuni Akbar Angkatan 2000-2024:</strong> Diadakan setiap 5 tahun sekali.</li>
+                    <li><strong>Donasi Buku:</strong> Program penggalangan dana dari alumni untuk memperkaya perpustakaan sekolah.</li>
+                    <li><strong>Kelas Inspirasi:</strong> Alumni sukses berbagi cerita ke siswa kelas XII.</li>
+                </ul>`
+            },
+
+            // PPDB
+            'ppdb-waktu': {
+                title: 'Waktu Pendaftaran',
+                image: 'https://picsum.photos/seed/time/1200/400',
+                type: 'text',
+                content: `<div style="background: #e3f2fd; padding: 20px; border-left: 5px solid var(--primary-blue); margin-bottom: 20px;">
+                    <h3 style="margin-top:0;">Jadwal PPDB 2024</h3>
+                    <p><strong>Gelombang 1 (Early Bird):</strong> 1 Mei - 15 Juni 2024</p>
+                    <p><strong>Gelombang 2 (Reguler):</strong> 16 Juni - 15 Juli 2024</p>
+                    <p><strong>Waktu Pelayanan:</strong> Senin - Jumat (08.00 - 14.00 WIB)</p>
+                </div>`
+            },
+            'ppdb-kontak': {
+                title: 'Kontak Person',
+                image: 'https://picsum.photos/seed/phone/1200/400',
+                type: 'text',
+                content: `<p>Untuk informasi lebih lanjut mengenai pendaftaran, silakan hubungi Panitia PPDB:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Ketua Panitia:</strong> Bpk. Rahmat (0812-3456-7890)</li>
+                    <li><strong>Sekretariat:</strong> Ibu Dewi (0899-8765-4321)</li>
+                    <li><strong>Admin WhatsApp:</strong> 0811-2233-4455 (Fast Respon)</li>
+                </ul>
+                <p style="margin-top:10px;">Atau kunjungi sekretariat PPDB di Ruang Guru Lt. 2.</p>`
+            },
+            'ppdb-cara': {
+                title: 'Cara Daftar',
+                image: 'https://picsum.photos/seed/form/1200/400',
+                type: 'text',
+                content: `<h3>Alur Pendaftaran Siswa Baru</h3>
+                <ol style="margin-left: 20px;">
+                    <li>Membeli formulir pendaftaran (Rp 150.000) secara Online atau Offline.</li>
+                    <li>Mengisi formulir dengan data yang benar.</li>
+                    <li>Menyerahkan berkas persyaratan:</li>
+                    <ul>
+                        <li>Fotocopy KK & Akta Kelahiran (3 Rangkap).</li>
+                        <li>Ijazah/SKL SMP/MTs (Legalisir).</li>
+                        <li>Pas Foto 3x4 (4 Lembar).</li>
+                        <li>Surat Keterangan Orang Tua.</li>
+                    </ul>
+                    <li>Mengikuti Tes Seleksi (Tes Potensi Akademik & Baca Al-Quran).</li>
+                    <li>Melakukan Wawancara dengan orang tua.</li>
+                </ol>`
+            },
+            'ppdb-saran': {
+                title: 'Saran Pendaftaran',
+                image: 'https://picsum.photos/seed/lightbulb/1200/400',
+                type: 'text',
+                content: `<p>Beberapa tips dari panitia agar pendaftaran lancar:</p>
+                <ul style="margin-left: 20px;">
+                    <li>Pastikan berkas disiapkan <strong>Lengkap dan Rapi</strong>.</li>
+                    <li>Jangan menunggu menit-menit terakhir gelombang 1 agar tidak terjepit.</li>
+                    <li>Siapkan diri untuk tes baca Al-Quran minimal hafal Juz 30 Surat pendek.</li>
+                    <li>Gunakan alamat email yang aktif untuk pengiruman informasi hasil tes.</li>
+                </ul>`
+            },
+            'ppdb-hasil': {
+                title: 'Hasil Tes Diumumkan',
+                image: 'https://picsum.photos/seed/result/1200/400',
+                type: 'text',
+                content: `<p>Pengumuman hasil tes seleksi akan dilakukan secara:</p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Online:</strong> Melalui Website dan Instagram Official Sekolah.</li>
+                    <li><strong>Offline:</strong> Dipasang di Papan Pengumuman Sekolah.</li>
+                </ul>
+                <p>Jadwal Pengumuman:</p>
+                <ul style="margin-left: 20px;">
+                    <li>Tes Gelombang 1: 20 Juni 2024</li>
+                    <li>Tes Gelombang 2: 20 Juli 2024</li>
+                </ul>`
+            },
+            'ppdb-biaya': {
+                title: 'Pembiayaan PPDB',
+                image: 'https://picsum.photos/seed/cost/1200/400',
+                type: 'text',
+                content: `<h3>Rincian Biaya Pendaftaran</h3>
+                <table class="custom-table">
+                    <tr><th>Uraian</th><th>Jumlah (Rp)</th></tr>
+                    <tr><td>Formulir Pendaftaran</td><td>150.000</td></tr>
+                    <tr><td>Uang Pangkal (Gelombang 1)</td><td>2.500.000</td></tr>
+                    <tr><td>Uang Pangkal (Gelombang 2)</td><td>3.000.000</td></tr>
+                    <tr><td>SPP Bulanan (Reguler)</td><td>300.000</td></tr>
+                    <tr><td>SPP Bulanan (Khusus Tahfidz)</td><td>450.000</td></tr>
+                </table>
+                <p style="margin-top:10px;">*Biaya seragam dan buku ditagih terpisah melalui Koperasi.</p>`
+            },
+            'ppdb-sosmed': {
+                title: 'Sosial Media Info PPDB',
+                image: 'https://picsum.photos/seed/social/1200/400',
+                type: 'text',
+                content: `<p>Ikuti update informasi terkini mengenai PPDB melalui sosial media kami:</p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Instagram:</strong> @ppdb_maharamain03</li>
+                    <li><strong>Facebook:</strong> PPDB MA Haramain 03 Bekasi</li>
+                    <li><strong>YouTube:</strong> MA Haramain 03 Official</li>
+                </ul>`
+            },
+
+            // LAINNYA & KOMITE
+            'komite-struktur': {
+                title: 'Struktur Organisasi Komite',
+                image: 'https://picsum.photos/seed/team/1200/400',
+                type: 'text',
+                content: `
+                <p>Struktur Organisasi Komite Sekolah MA HARAMAIN 03 BEKASI.</p>
+                
+                <div class="org-chart-container">
+                    <!-- Level 1: Ketua Komite -->
+                    <div class="org-level org-level-1">
+                        <div class="org-card">
+                            <img src="https://picsum.photos/seed/jamaludin/200/200" alt="Ketua Komite">
+                            <h4>Ketua Komite</h4>
+                            <p>H. Jamaludin, Lc.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Connector Line -->
+                    <div class="org-connector"></div>
+
+                    <!-- Level 2: Pengurus -->
+                    <div class="org-level org-level-2">
+                        <div class="org-card">
+                            <img src="https://picsum.photos/seed/mariyam/200/200" alt="Wakil Ketua">
+                            <h4>Wakil Ketua</h4>
+                            <p>Ibu Hj. Mariyam</p>
+                        </div>
+                        
+                        <div class="org-card">
+                            <img src="https://picsum.photos/seed/asep/200/200" alt="Sekretaris">
+                            <h4>Sekretaris</h4>
+                            <p>Bpk. Asep Setiawan</p>
+                        </div>
+                        
+                        <div class="org-card">
+                            <img src="https://picsum.photos/seed/ratna/200/200" alt="Bendahara">
+                            <h4>Bendahara</h4>
+                            <p>Ibu Ratna Sari</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <p>Komite berperan aktif dalam memberikan pertimbangan, dukungan, dan pengawasan terhadap penyelenggaraan pendidikan di MA Haramain 03.</p>
+                </div>
+                `
+            },
+            'komite-info': {
+                title: 'Info Kegiatan Komite',
+                image: 'https://picsum.photos/seed/meeting/1200/400',
+                type: 'text',
+                content: `<p><strong>Kegiatan Terbaru:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Rapat Koordinasi Triwulan (Bulan April 2024) mengenai penggunaan Dana BOS.</li>
+                    <li>Pengadaan Seragam Batik Sekolah Tahun Ajaran 2024/2025.</li>
+                    <li>Pengawasan Pelaksanaan UAS Semester Genap.</li>
+                </ul>`
+            },
+            'berita': {
+                title: 'Berita Sekolah',
+                image: 'https://picsum.photos/seed/news/1200/400',
+                type: 'text',
+                content: `<p>Halaman ini memuat arsip seluruh berita kegiatan sekolah. Silakan kembali ke halaman Beranda untuk melihat berita terkini.</p>`
+            },
+            'kepuasan': {
+                title: 'Grafik Kepuasan Pelanggan',
+                image: 'https://picsum.photos/seed/graph/1200/400',
+                type: 'text',
+                content: `<p>Data Survei Kepuasan Orang Tua dan Siswa Tahun 2024:</p>
+                <div style="margin-top: 20px;">
+                    <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                        <span style="width: 200px;">Kenyamanan Lingkungan</span>
+                        <div style="flex:1; background: #eee; height: 20px; border-radius: 10px; overflow: hidden;">
+                            <div style="width: 85%; background: green; height: 100%;"></div>
+                        </div>
+                        <span style="margin-left: 10px; font-size: 0.8rem;">85%</span>
+                    </div>
+                    <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                        <span style="width: 200px;">Kualitas Guru</span>
+                        <div style="flex:1; background: #eee; height: 20px; border-radius: 10px; overflow: hidden;">
+                            <div style="width: 92%; background: blue; height: 100%;"></div>
+                        </div>
+                        <span style="margin-left: 10px; font-size: 0.8rem;">92%</span>
+                    </div>
+                    <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                        <span style="width: 200px;">Pelayanan TU</span>
+                        <div style="flex:1; background: #eee; height: 20px; border-radius: 10px; overflow: hidden;">
+                            <div style="width: 78%; background: orange; height: 100%;"></div>
+                        </div>
+                        <span style="margin-left: 10px; font-size: 0.8rem;">78%</span>
+                    </div>
+                    <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                        <span style="width: 200px;">Fasilitas</span>
+                        <div style="flex:1; background: #eee; height: 20px; border-radius: 10px; overflow: hidden;">
+                            <div style="width: 88%; background: purple; height: 100%;"></div>
+                        </div>
+                        <span style="margin-left: 10px; font-size: 0.8rem;">88%</span>
+                    </div>
+                </div>`
+            },
+            'kritik-saran': {
+                title: 'Kritik & Saran',
+                image: 'https://picsum.photos/seed/feedback/1200/400',
+                type: 'text',
+                content: `
+                    <form onsubmit="event.preventDefault(); alert('Terima kasih, kritik dan saran Anda telah terkirim ke admin sekolah.');">
+                        <div style="margin-bottom: 15px;">
+                            <label>Nama Lengkap:</label><br>
+                            <input type="text" style="padding: 8px; width: 100%; border: 1px solid #ccc;" required placeholder="Nama Anda">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label>Email / No. HP:</label><br>
+                            <input type="text" style="padding: 8px; width: 100%; border: 1px solid #ccc;" required placeholder="Kontak yang bisa dihubungi">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label>Isi Kritik/Saran:</label><br>
+                            <textarea rows="5" style="padding: 8px; width: 100%; border: 1px solid #ccc;" required placeholder="Tuliskan masukan Anda..."></textarea>
+                        </div>
+                        <button class="btn">Kirim Masukan</button>
+                    </form>`
+            }
+        };
+
+        // --- SPA NAVIGATION LOGIC ---
+        
+        function loadContent(pageId) {
+            // 1. Hide all sections
+            document.querySelectorAll('.spa-section').forEach(el => el.classList.remove('active'));
+            
+            // 2. Check if requested page is "Home"
+            if (pageId === 'home') {
+                document.getElementById('home').classList.add('active');
+                window.scrollTo(0,0);
+                return;
+            }
+
+            // 3. Show the Dynamic Content Section
+            const dynamicSection = document.getElementById('dynamic-content');
+            dynamicSection.classList.add('active');
+            
+            // 4. Fetch data from DB
+            const data = db_content[pageId];
+            
+            if (data) {
+                document.getElementById('d-title').innerText = data.title;
+                
+                // Handle Image
+                const imgElement = document.getElementById('d-image');
+                if (data.image) {
+                    imgElement.style.display = 'block';
+                    imgElement.src = data.image;
+                } else {
+                    imgElement.style.display = 'none';
+                }
+
+                // Handle Content
+                let bodyHTML = '';
+                if (data.type === 'text') {
+                    bodyHTML = data.content;
+                } else if (data.type === 'table') {
+                    bodyHTML = `
+                        <table class="custom-table">
+                            <thead><tr>${data.headers.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+                            <tbody>${data.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>
+                        </table>
+                    `;
+                } else if (data.type === 'map') {
+                    bodyHTML = `
+                        <div style="width:100%; height:400px; background:#eee;">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.298877376865!2d107.000000!3d-6.200000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTInMDAuMCJTIDEwN8KwMDAnMDAuMCJF!5e0!3m2!1sen!2sid!4v1600000000000!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
+                        </div>`;
+                }
+                document.getElementById('d-body').innerHTML = bodyHTML;
+            } else {
+                // Fallback
+                document.getElementById('d-title').innerText = "Halaman Tidak Tersedia";
+                document.getElementById('d-image').style.display = 'none';
+                document.getElementById('d-body').innerHTML = "<p>Maaf, halaman ini sedang dalam proses pengembangan.</p>";
+            }
+
+            // 5. Scroll to top
+            window.scrollTo(0,0);
+
+            // 6. Close mobile menu if open
+            const nav = document.getElementById('mainNav');
+            if(nav.classList.contains('mobile-active')) {
+                nav.classList.remove('mobile-active');
+            }
+        }
+
+        // Mobile Menu Logic
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('mobile-active');
+            
+            // Simple toggle for dropdowns on mobile
+            const items = document.querySelectorAll('.nav-item');
+            items.forEach(item => {
+                item.onclick = function() {
+                    if(window.innerWidth <= 992) {
+                        this.classList.toggle('mobile-open');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
